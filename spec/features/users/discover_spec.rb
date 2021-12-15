@@ -4,7 +4,7 @@ require 'rails_helper'
    it "has a button for top rated movies" do
      VCR.use_cassette('popular_movies', re_record_interval: 30.days) do
 
-       user = User.create!(name: "Stephanie", email: "steph123@hotmail.com")
+       user = User.create!(name: "Stephanie", email: "steph123@hotmail.com", password: '123', password_confirmation: '123')
 
        visit "/users/#{user.id}/discover"
 
@@ -17,7 +17,7 @@ require 'rails_helper'
    it "has a button for finding movies" do
      VCR.use_cassette('popular_movies', re_record_interval: 30.days) do
 
-       user = User.create!(name: "Stephanie", email: "steph123@hotmail.com")
+       user = User.create!(name: "Stephanie", email: "steph123@hotmail.com", password: '123', password_confirmation: '123')
 
        visit "/users/#{user.id}/discover"
 

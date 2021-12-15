@@ -16,8 +16,8 @@ RSpec.describe 'welcome page' do
   end
 
   it "lists existing users email addresses and links to their dashboard" do
-    user = User.create!(name: "Stephanie", email: "steph123@hotmail.com")
-    user2 = User.create!(name: "Ted", email: "tstaros23@hotmail.com")
+    user = User.create!(name: "Stephanie", email: "steph123@hotmail.com", password: '789', password_confirmation: '789')
+    user2 = User.create!(name: "Ted", email: "tstaros23@hotmail.com", password: 'ted', password_confirmation: 'ted')
 
     visit '/'
 
