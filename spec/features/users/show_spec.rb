@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'user show page' do
   it 'can show a user attributes' do
-    user = User.create!(name: "Stephanie", email: "steph123@hotmail.com")
+    user = User.create!(name: "Stephanie", email: "steph123@hotmail.com", password: '123', password_confirmation: '123')
 
     visit "/users/#{user.id}"
     expect(page).to have_content(user.name)
@@ -11,7 +11,7 @@ RSpec.describe 'user show page' do
   end
 
   it 'has a button to Discover Movies' do
-    user = User.create!(name: "Stephanie", email: "steph123@hotmail.com")
+    user = User.create!(name: "Stephanie", email: "steph123@hotmail.com", password: '123', password_confirmation: '123')
     visit "/users/#{user.id}"
 
     click_on('Discover Movies')
@@ -23,7 +23,7 @@ RSpec.describe 'user show page' do
     party2 = Party.create!(host_id: nil, movie_id: 5, duration: 26, day: 'Sunday', start_time: "06:20" )
 
 
-    user = User.create!(name: "Stephanie", email: "steph123@hotmail.com")
+    user = User.create!(name: "Stephanie", email: "steph123@hotmail.com", password: '123', password_confirmation: '123')
 
     UserParty.create!(user_id: user.id, party_id: party.id)
     UserParty.create!(user_id: user.id, party_id: party2.id)
