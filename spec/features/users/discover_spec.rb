@@ -8,7 +8,7 @@ require 'rails_helper'
 
        visit "/users/#{user.id}/discover"
 
-       click_on('Top Rated Movies')
+       click_on('Top Rated Movies', match: :first)
 
        expect(current_path).to eq("/users/#{user.id}/movies")
     end
@@ -23,7 +23,7 @@ require 'rails_helper'
 
        fill_in :search, with: "Red Notice"
 
-       click_on('Find Movies')
+       click_on('Find Movies', match: :first)
 
        expect(page).to have_content("Red Notice")
        expect(current_path).to eq("/users/#{user.id}/movies")

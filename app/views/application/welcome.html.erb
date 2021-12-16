@@ -1,5 +1,6 @@
 <h1>Viewing Party Light</h1>
-<%= button_to 'Create a New User', '/register', method: :get %>
+<%= button_to 'Create a New User', '/register', method: :get %><br>
+<%= button_to "I already have an account", "/login" %>
 
 <p>Existing Users:</p>
 <% @users.each do |user| %>
