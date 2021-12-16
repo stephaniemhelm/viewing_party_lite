@@ -14,7 +14,7 @@ RSpec.describe 'welcome page' do
     visit '/'
 
     click_on('Create a New User', match: :first)
-    #click_on('Create a New User')
+
     expect(current_path).to eq('/register')
   end
 
@@ -22,13 +22,16 @@ RSpec.describe 'welcome page' do
     user = User.create!(name: "Stephanie", email: "steph123@hotmail.com", password: '789', password_confirmation: '789')
     user2 = User.create!(name: "Ted", email: "tstaros23@hotmail.com", password: 'ted', password_confirmation: 'ted')
 
-    visit '/'
+    visit '/login'
+    fill_in :email, with: "tstaros23@hotmail.com"
+    fill_in :password, with: 'ted'
+    click_button 'Log In'
+
+    visit '/dashboard'
+    click_link 'Home'
 
     expect(page).to have_link("tstaros23@hotmail.com")
     expect(page).to have_link("steph123@hotmail.com")
 
-    click_on("tstaros23@hotmail.com", match: :first)
-
-    expect(current_path).to eq("/users/#{user2.id}")
   end
 end
