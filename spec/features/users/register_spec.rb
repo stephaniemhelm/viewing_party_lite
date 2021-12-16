@@ -40,4 +40,19 @@ RSpec.describe 'registration page' do
     expect(page).to have_content("Meg")
   end
 
+  xit 'sad path: user not created if passwords dont match' do
+    visit '/register'
+
+    name = 'Meg'
+    email = 'meg@test123'
+
+    fill_in :name, with: name
+    fill_in :email, with: email
+    fill_in :password, with: '12345'
+    fill_in :password_confirmation, with: '123'
+
+    click_on('Create New User')
+
+    expect(page).to have_content('Password and password confirmation must match.')
+  end
 end

@@ -5,13 +5,16 @@ RSpec.describe 'welcome page' do
     visit '/'
 
     expect(page).to have_link('Home')
+    expect(page).to have_button('Create a New User')
+    expect(page).to have_button('I already have an account')
     expect(page).to have_content('Viewing Party')
   end
 
   it "can create a user" do
     visit '/'
 
-    click_on('Create a New User')
+    click_on('Create a New User', match: :first)
+    #click_on('Create a New User')
     expect(current_path).to eq('/register')
   end
 
@@ -24,7 +27,7 @@ RSpec.describe 'welcome page' do
     expect(page).to have_link("tstaros23@hotmail.com")
     expect(page).to have_link("steph123@hotmail.com")
 
-    click_on("tstaros23@hotmail.com")
+    click_on("tstaros23@hotmail.com", match: :first)
 
     expect(current_path).to eq("/users/#{user2.id}")
   end

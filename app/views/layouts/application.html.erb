@@ -10,9 +10,13 @@
   </head>
 
   <body>
-    <section>
+
       <p><%= link_to "Home", "/" %></p>
-    </section>
+      <% flash.each do |name, msg| %>
+      <div class="alert alert-warning">
+        <strong><%= content_tag :div, msg, class: name %></strong>
+      </div>
+    <% end %>
     <%= yield %>
   </body>
 </html>
