@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :require_user, only: :show
+
   def new
     @user = User.new
   end
@@ -24,5 +26,12 @@ class UsersController < ApplicationController
     private
     def user_params
       params.permit(:name, :email, :password, :password_confirmation)
+    end
+
+    def require_user
+      if !session[:user_id]
+        flash[:alert] = 'Must be a registered user and logged in to visit user dashboard.'
+        redirect_to '/'
+      end 
     end
 end
