@@ -16,7 +16,7 @@ RSpec.describe 'User Log In' do
     fill_in :password, with: '12345'
 
     click_button "Log In"
-    expect(current_path).to eq("/users/#{user.id}")
+    expect(current_path).to eq('/dashboard')
 
   end
 

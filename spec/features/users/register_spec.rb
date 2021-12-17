@@ -15,7 +15,7 @@ RSpec.describe 'registration page' do
     user = User.last
     expect(user.email).to eq("steph23@hotmail.com")
     expect(user.name).to eq("Stephanie")
-    expect(current_path).to eq("/users/#{user.id}")
+    expect(current_path).to eq('/dashboard')
     expect(page).to have_content("Stephanie")
   end
 
@@ -36,11 +36,11 @@ RSpec.describe 'registration page' do
     user = User.last
     expect(user.email).to eq(email)
     expect(user.name).to eq(name)
-    expect(current_path).to eq("/users/#{user.id}")
+    expect(current_path).to eq('/dashboard')
     expect(page).to have_content("Meg")
   end
 
-  xit 'sad path: user not created if passwords dont match' do
+  it 'sad path: user not created if passwords dont match' do
     visit '/register'
 
     name = 'Meg'

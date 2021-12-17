@@ -1,7 +1,7 @@
 <h1><%= "#{@user.name}" %>'s Dashboard </h1>
 <%= @user.email %>
 
-<%= button_to 'Discover Movies', "/users/#{@user.id}/discover", method: :get %>
+<%= button_to 'Discover Movies', "/discover", method: :get %>
 
 <section>
   <h1>Viewing Parties</h1>
