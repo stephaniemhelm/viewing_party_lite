@@ -30,8 +30,8 @@ RSpec.describe 'welcome page' do
     visit '/dashboard'
     click_link 'Home'
 
-    expect(page).to have_link("tstaros23@hotmail.com")
-    expect(page).to have_link("steph123@hotmail.com")
+    expect(page).to have_content(user.name)
+    expect(page).to have_content(user2.name)
   end
 
   it 'shows a logged in user a logout button' do
@@ -50,5 +50,26 @@ RSpec.describe 'welcome page' do
     expect(current_path).to eq('/')
     expect(page).to have_button("I already have an account")
     expect(page).to have_button('Create a New User')
+  end
+
+  it 'does not show a visitor the existing users' do
+    visit '/'
+
+    expect(page).to_not have_content('Existing Users')
+  end
+
+  it 'does show a registered user existing users email addresses' do
+    user1 = User.create!(name: "Stephanie", email: "steph123@hotmail.com", password: '123', password_confirmation: '123')
+    user2 = User.create!(name: "Meg", email: "meg@turing.com", password: 'test', password_confirmation: 'test')
+
+    visit '/login'
+    fill_in :email, with: "steph123@hotmail.com"
+    fill_in :password, with: '123'
+    click_button 'Log In'
+
+    visit '/'
+
+    expect(page).to have_content('Existing Users')
+    expect(page).to have_content(user2.name)
   end
 end

@@ -7,8 +7,9 @@
   <%= button_to "I already have an account", "/login" %>
 <% end %>
 
-
-<p>Existing Users:</p>
-<% @users.each do |user| %>
-  <%= link_to "#{user.email}", "/dashboard" %>
+<% if session[:user_id] %>
+  <p>Existing Users:</p>
+  <% @users.each do |user| %>
+    <%= user.name %>
+  <% end %>
 <% end %>
