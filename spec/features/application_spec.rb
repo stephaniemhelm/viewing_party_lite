@@ -32,6 +32,23 @@ RSpec.describe 'welcome page' do
 
     expect(page).to have_link("tstaros23@hotmail.com")
     expect(page).to have_link("steph123@hotmail.com")
+  end
 
+  it 'shows a logged in user a logout button' do
+    user = User.create!(name: "Stephanie", email: "steph123@hotmail.com", password: '123', password_confirmation: '123')
+
+    visit '/login'
+    fill_in :email, with: "steph123@hotmail.com"
+    fill_in :password, with: '123'
+    click_button 'Log In'
+
+    visit '/'
+    expect(page).to have_button('Log Out')
+
+    click_button 'Log Out'
+
+    expect(current_path).to eq('/')
+    expect(page).to have_button("I already have an account")
+    expect(page).to have_button('Create a New User')
   end
 end

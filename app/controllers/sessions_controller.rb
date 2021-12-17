@@ -13,4 +13,9 @@ class SessionsController < ApplicationController
       flash[:alert] = 'User email or password not correct.'
     end
   end
+
+  def destroy
+    session.destroy
+    redirect_to '/'
+  end
 end
